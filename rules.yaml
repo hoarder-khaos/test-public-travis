@@ -1,0 +1,19 @@
+rules:
+  - id: use-json-response
+    patterns:
+      - pattern-inside: |
+          def $X(...):
+            ...
+      - pattern: |
+          $Y = json.dumps(...)
+          ...
+          django.http.HttpResponse($Y, ...)
+    message: Use JsonResponse instead
+    languages:
+      - python
+    severity: ERROR
+    metadata:
+      category: best-practice
+      technology:
+        - django
+      license: Commons Clause License Condition v1.0[LGPL-2.1-only]
